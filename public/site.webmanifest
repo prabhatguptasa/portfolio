@@ -1,0 +1,15 @@
+{
+  "name": "Prabhat Gupta - Portfolio",
+  "short_name": "PG Portfolio",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#8c5af2",
+  "background_color": "#1a1f2e",
+  "display": "standalone"
+}
+
