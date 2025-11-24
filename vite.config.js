@@ -23,6 +23,7 @@ const getBasePath = () => {
 export default defineConfig({
   plugins: [react()],
   base: getBasePath(),
+  publicDir: 'public',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

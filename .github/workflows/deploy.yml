@@ -35,6 +35,13 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
 
+      - name: Verify build output
+        run: |
+          echo "Build output contents:"
+          ls -la dist/
+          echo "Checking for favicon:"
+          ls -la dist/favicon.svg || echo "WARNING: favicon.svg not found!"
+
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
 
