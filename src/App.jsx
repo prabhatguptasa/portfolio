@@ -88,14 +88,14 @@ function App() {
               transition={{ delay: 0.4, type: 'spring' }}
               className="flex justify-center mb-4 sm:mb-6"
             >
-              <Avatar
-                src="https://i.pravatar.cc/150?u=prabhat"
-                name="Prabhat Gupta"
-                size="lg"
-                className="w-20 h-20 sm:w-24 sm:h-24 text-large"
-                isBordered
-                color="primary"
-              />
+              <div className="relative">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl font-display font-bold text-primary-foreground tracking-tighter">
+                    PG
+                  </span>
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent" />
+              </div>
             </motion.div>
 
             <motion.h1
