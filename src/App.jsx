@@ -82,22 +82,6 @@ function App() {
               <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-primary animate-pulse" />
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, type: 'spring' }}
-              className="flex justify-center mb-4 sm:mb-6"
-            >
-              <div className="relative">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl font-display font-bold text-primary-foreground tracking-tighter">
-                    PG
-                  </span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent" />
-              </div>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
