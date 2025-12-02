@@ -1,58 +1,130 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
+import { 
+  Card, 
+  CardBody,
+  Button,
+  Divider,
+  Link,
+  Avatar,
+  Tooltip,
+  Chip
+} from '@heroui/react'
+import { ArrowRight, Mail, Linkedin, Github, MessageCircle } from 'lucide-react'
+
+const contactMethods = [
+  {
+    key: 'linkedin',
+    label: 'Connect on LinkedIn',
+    href: 'https://in.linkedin.com/in/prabhat--gupta',
+    icon: Linkedin,
+    color: 'primary',
+    variant: 'solid',
+    description: 'Professional network and updates'
+  },
+  {
+    key: 'email',
+    label: 'Send Email',
+    href: 'mailto:prabhat.gupta@example.com',
+    icon: Mail,
+    color: 'secondary',
+    variant: 'bordered',
+    description: 'Direct email communication'
+  },
+  {
+    key: 'github',
+    label: 'View GitHub',
+    href: 'https://github.com/prabhat-gupta',
+    icon: Github,
+    color: 'default',
+    variant: 'flat',
+    description: 'Code repositories and projects'
+  },
+]
 
 export default function Contact() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <div ref={ref} className="min-h-screen py-24 sm:py-32 px-6 sm:px-8 relative bg-background overflow-hidden">
-      {/* Creative background elements */}
-      <div className="absolute inset-0 bg-gradient-animated opacity-30" />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/10 blur-3xl rotate-slow" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl rotate-slow" style={{ animationDirection: 'reverse' }} />
-      
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="mb-12"
-          >
-            <h2 className="text-display font-display mb-4 text-shimmer text-tight">
-              LET'S CONNECT
-            </h2>
-            <div className="section-divider-thick w-32 mx-auto mb-6" />
-            <p className="text-subtitle font-serif text-muted-foreground max-w-2xl mx-auto text-balance italic">
-              Have a project in mind? Let's collaborate and build something amazing together.
-            </p>
-          </motion.div>
+    <div ref={ref} className="space-y-4 sm:space-y-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        className="text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.1, type: 'spring' }}
+          className="flex justify-center mb-3 sm:mb-4"
+        >
+          <Avatar
+            icon={<MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" />}
+            size="lg"
+            color="success"
+            isBordered
+          />
+        </motion.div>
+        <h3 className="text-lg sm:text-xl font-heading text-foreground mb-2">Let's Connect</h3>
+        <p className="text-sm sm:text-base font-serif text-muted-foreground text-balance px-2">
+          Have a project in mind? Let's collaborate and build something amazing together.
+        </p>
+      </motion.div>
 
-          {/* Connect Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <motion.a
-              href="https://in.linkedin.com/in/prabhat--gupta"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button size="lg" className="gap-2 text-lg px-8 py-6">
-                Connect on LinkedIn
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </motion.a>
-          </motion.div>
-        </div>
-      </div>
+      <Divider />
+
+      <Card className="bg-card/30 border border-border" radius="xl">
+        <CardBody className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+          {contactMethods.map((method, index) => {
+            const Icon = method.icon
+            return (
+              <Tooltip
+                key={method.key}
+                content={method.description}
+                color={method.color}
+                showArrow
+                placement="left"
+              >
+                <Button
+                  as={Link}
+                  href={method.href}
+                  target={method.key !== 'email' ? '_blank' : undefined}
+                  rel={method.key !== 'email' ? 'noopener noreferrer' : undefined}
+                  color={method.color}
+                  variant={method.variant}
+                  size="lg"
+                  startContent={<Icon className="w-4 h-4 sm:w-5 sm:h-5" />}
+                  endContent={<ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />}
+                  className="w-full font-heading text-sm sm:text-base"
+                  aria-label={method.label}
+                >
+                  {method.label}
+                </Button>
+              </Tooltip>
+            )
+          })}
+        </CardBody>
+      </Card>
+
+      <Divider />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.3 }}
+        className="text-center"
+      >
+        <Chip
+          size="md"
+          variant="flat"
+          color="success"
+          className="font-heading text-xs sm:text-sm"
+        >
+          Open to opportunities and collaborations
+        </Chip>
+      </motion.div>
     </div>
   )
 }
