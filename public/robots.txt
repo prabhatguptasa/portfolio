@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prabhatgupta.in/sitemap.xml

@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
-import { 
-  Cloud, 
-  Code, 
-  Database, 
-  Brain, 
-  Server, 
+import {
+  Cloud,
+  Code,
+  Database,
+  Brain,
+  Server,
   GitBranch,
   Zap,
   Shield,
@@ -14,17 +14,20 @@ import {
   Target,
   Users,
   TrendingUp,
+  Terminal,
+  Cpu,
+  Layers
 } from 'lucide-react'
 
 const skills = [
-  { icon: Cloud, label: 'AWS Cloud', level: 95, color: 'primary' },
-  { icon: Code, label: 'Python', level: 90, color: 'accent' },
-  { icon: Database, label: 'Data Pipelines', level: 88, color: 'secondary' },
-  { icon: Brain, label: 'AI/LLM Integration', level: 85, color: 'primary' },
-  { icon: Server, label: 'Serverless Architecture', level: 90, color: 'accent' },
-  { icon: GitBranch, label: 'GraphQL', level: 85, color: 'secondary' },
-  { icon: Zap, label: 'AWS CDK', level: 92, color: 'primary' },
-  { icon: Shield, label: 'Infrastructure as Code', level: 88, color: 'accent' },
+  { icon: Cloud, label: 'AWS Cloud', level: 95, category: 'Infrastructure' },
+  { icon: Code, label: 'Python', level: 90, category: 'Language' },
+  { icon: Database, label: 'Data Pipelines', level: 88, category: 'Data' },
+  { icon: Brain, label: 'AI/LLM Integration', level: 85, category: 'AI' },
+  { icon: Server, label: 'Serverless', level: 90, category: 'Infrastructure' },
+  { icon: GitBranch, label: 'GraphQL', level: 85, category: 'API' },
+  { icon: Zap, label: 'AWS CDK', level: 92, category: 'Infrastructure' },
+  { icon: Shield, label: 'IaC', level: 88, category: 'DevOps' },
 ]
 
 const focusAreas = [
@@ -38,212 +41,167 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <div ref={ref} className="min-h-screen py-24 sm:py-32 px-6 sm:px-8 relative bg-background overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-gradient-animated opacity-30" />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/10 blur-3xl rotate-slow" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl rotate-slow" style={{ animationDirection: 'reverse' }} />
-      
+    <div ref={ref} className="min-h-screen py-20 md:py-32 px-4 md:px-6 relative bg-background overflow-hidden flex flex-col justify-center">
+      {/* Tech Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Creative Section Title */}
+        {/* Connector Line */}
+        <motion.div
+          initial={{ height: 0 }}
+          whileInView={{ height: '100%' }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/0 via-primary/40 to-primary/0 -translate-x-1/2 hidden md:block"
+        />
+
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-center gap-4 mb-16 relative max-w-2xl mx-auto"
+        >
+          <div className="h-px bg-primary/50 w-12" />
+          <h2 className="text-2xl font-mono text-primary tracking-wider font-bold flex items-center gap-2">
+            <Layers className="w-5 h-5" />
+            // SYSTEM_ARCHITECTURE
+          </h2>
+          <div className="h-px bg-primary/50 w-12" />
+        </motion.div>
+
+        {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10"
         >
-          <motion.h2 
-            className="text-display font-display mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            <span className="text-shimmer text-tight">ABOUT</span>
-          </motion.h2>
-          <div className="section-divider-thick w-48 mx-auto mb-8" />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.4 }}
-            className="text-subtitle font-serif text-muted-foreground max-w-2xl mx-auto text-balance italic"
-          >
-            Crafting innovative solutions with passion and precision
-          </motion.p>
+          {[
+            { icon: Rocket, value: '08+', label: 'YEARS_EXP' },
+            { icon: Target, value: '15+', label: 'PROJECTS_DONE' },
+            { icon: TrendingUp, value: '100%', label: 'SATISFACTION' }
+          ].map((stat, index) => (
+            <div key={index} className="relative p-6 rounded-xl border border-primary/20 bg-primary/5 overflow-hidden group hover:border-primary/50 transition-colors">
+              <div className="absolute -right-4 -top-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <stat.icon className="w-24 h-24" />
+              </div>
+              <div className="relative z-10">
+                <div className="text-4xl font-mono font-bold text-foreground mb-1 font-display">{stat.value}</div>
+                <div className="text-xs font-mono text-primary tracking-widest uppercase">{stat.label}</div>
+              </div>
+            </div>
+          ))}
         </motion.div>
 
-        {/* Hero Stats Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-        >
-          <Card className="card-gradient-border bg-card/30 border-0 hover-lift overflow-hidden relative group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
-            <CardContent className="p-8 text-center relative z-10">
-              <Rocket className="w-12 h-12 mx-auto mb-4 text-primary float-animation" />
-              <div className="text-display font-display mb-2 number-counter text-tight">8+</div>
-              <p className="text-small text-wide text-muted-foreground">Years Experience</p>
-            </CardContent>
-          </Card>
-
-          <Card className="card-gradient-border bg-card/30 border-0 hover-lift overflow-hidden relative group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
-            <CardContent className="p-8 text-center relative z-10">
-              <Target className="w-12 h-12 mx-auto mb-4 text-accent float-animation" style={{ animationDelay: '0.5s' }} />
-              <div className="text-display font-display mb-2 number-counter text-tight">15+</div>
-              <p className="text-small text-wide text-muted-foreground">Projects Delivered</p>
-            </CardContent>
-          </Card>
-
-          <Card className="card-gradient-border bg-card/30 border-0 hover-lift overflow-hidden relative group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
-            <CardContent className="p-8 text-center relative z-10">
-              <TrendingUp className="w-12 h-12 mx-auto mb-4 text-secondary float-animation" style={{ animationDelay: '1s' }} />
-              <div className="text-display font-display mb-2 number-counter text-tight">100%</div>
-              <p className="text-small text-wide text-muted-foreground">Client Satisfaction</p>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* Main Content - Asymmetric Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
-          {/* Story - Takes 3 columns */}
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-10">
+          {/* Bio - Terminal Style */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <Card className="card-glass card-accent-left hover-card h-full">
-              <CardContent className="p-8 sm:p-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 rounded-xl bg-primary/20">
-                    <Code className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-light text-gradient-primary">Who I Am</h3>
-                </div>
-                <p className="text-body-large text-extra-light mb-6 text-foreground text-balance">
-                  I'm <span className="font-serif font-medium text-primary">Prabhat</span> — a Senior Software Engineer with over{' '}
-                  <span className="font-display font-medium number-counter">8 years</span> of experience building cloud-native, data-driven, and AI-enhanced systems.
+            <div className="h-full rounded-xl border border-primary/20 bg-black/40 backdrop-blur-sm overflow-hidden flex flex-col">
+              {/* Terminal Header */}
+              <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border-b border-primary/20">
+                <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                <div className="ml-2 text-xs font-mono text-primary/70">user@portfolio:~/bio</div>
+              </div>
+
+              <div className="p-6 font-mono text-base md:text-lg leading-relaxed text-muted-foreground flex-1">
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">whoami</span>
                 </p>
-                <p className="text-body text-extra-light text-muted-foreground mb-6 text-balance">
-                  Currently leading as <span className="text-primary font-medium">Tech Lead for Lumos</span>, a next-generation game analytics platform, where I architect ETL pipelines, integrate LLM-based chat systems, and drive infrastructure evolution using AWS CDK.
+                <p className="mb-6 pl-4 border-l-2 border-primary/20">
+                  I'm <span className="text-foreground font-bold">Prabhat</span> — a Senior Software Engineer with over 8 years of experience building cloud-native, data-driven, and AI-enhanced systems.
                 </p>
-                <div className="flex flex-wrap gap-3">
+
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">cat current_role.txt</span>
+                </p>
+                <p className="mb-6 pl-4 border-l-2 border-primary/20">
+                  Currently leading as <span className="text-foreground font-bold">Tech Lead for Lumos</span>, a next-generation game analytics platform. I specialize in architecting ETL pipelines, integrating LLM-based chat systems, and driving infrastructure evolution using AWS CDK.
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-8">
                   {['Cloud-Native', 'AI/ML', 'Serverless', 'Leadership'].map((tag, i) => (
-                    <motion.span
-                      key={tag}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 0.7 + i * 0.1 }}
-                      className="px-4 py-2 bg-primary/10 text-primary text-small font-heading rounded-full border border-primary/20 hover-bg-primary hover-text-primary hover-scale cursor-default"
-                    >
-                      {tag}
-                    </motion.span>
+                    <span key={tag} className="px-3 py-1.5 bg-primary/10 text-primary text-sm border border-primary/20 rounded hover:bg-primary/20 transition-colors cursor-default">
+                      #{tag}
+                    </span>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Focus Areas - Takes 2 columns */}
+          {/* Focus Areas */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="lg:col-span-2 space-y-6"
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="lg:col-span-2 space-y-4"
           >
-            <Card className="card-glass hover-card h-full">
-              <CardContent className="p-6">
-                <h3 className="text-title font-heading mb-6 text-gradient-primary flex items-center gap-2">
-                  <Target className="w-5 h-5" />
-                  Focus Areas
-                </h3>
-                <div className="space-y-4">
-                  {focusAreas.map((area, index) => {
-                    const Icon = area.icon
-                    return (
-                      <motion.div
-                        key={area.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.8 + index * 0.1 }}
-                        className="p-4 rounded-lg border border-border hover-bg-primary group cursor-pointer transition-all"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                            <Icon className="w-5 h-5 text-primary" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-subtitle font-heading text-foreground mb-1 group-hover:text-primary transition-colors">
-                              {area.label}
-                            </h4>
-                            <p className="text-small text-muted-foreground font-serif italic">{area.description}</p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )
-                  })}
+            {focusAreas.map((area, index) => (
+              <div key={index} className="p-5 border border-border bg-card/30 rounded-lg hover:bg-primary/5 transition-colors group cursor-default hover:border-primary/30 backdrop-blur-sm relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex items-start gap-4 relative z-10">
+                  <div className="p-2 bg-primary/10 rounded-md group-hover:text-primary transition-colors">
+                    <area.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-mono text-foreground text-base mb-1 font-bold">{area.label}</h4>
+                    <p className="text-sm text-muted-foreground">{area.description}</p>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* Skills Grid - Creative Layout */}
+        {/* Skills Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.7, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-title-large font-display text-gradient-primary">
-              Technical Expertise
+          <div className="flex items-center gap-4 mb-8">
+            <h3 className="text-xl font-mono text-foreground font-bold flex items-center gap-2">
+              <Cpu className="w-5 h-5 text-primary" />
+              /SKILLS_MATRIX
             </h3>
-            <div className="hidden md:block section-divider flex-1 ml-8" />
+            <div className="h-px bg-border flex-1" />
           </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {skills.map((skill, index) => {
-              const Icon = skill.icon
-              return (
-                <motion.div
-                  key={skill.label}
-                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                  animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                  transition={{ 
-                    delay: 0.9 + index * 0.1, 
-                    duration: 0.5,
-                    type: 'spring',
-                    stiffness: 200
-                  }}
-                >
-                  <Card className="card-glass hover-card cursor-pointer h-full group relative overflow-hidden">
-                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ${
-                      skill.color === 'primary' ? 'bg-primary/5' : 
-                      skill.color === 'accent' ? 'bg-accent/5' : 
-                      'bg-secondary/5'
-                    }`} />
-                    <CardContent className="p-6 text-center relative z-10">
-                      <motion.div
-                        whileHover={{ scale: 1.2, rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Icon className={`w-10 h-10 mx-auto mb-4 hover-icon ${
-                          skill.color === 'primary' ? 'text-primary' : 
-                          skill.color === 'accent' ? 'text-accent' : 
-                          'text-secondary'
-                        }`} />
-                      </motion.div>
-                      <h4 className="text-small font-heading text-foreground group-hover:text-primary transition-colors">
-                        {skill.label}
-                      </h4>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )
-            })}
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="p-5 border border-border bg-card/50 rounded-lg hover:border-primary/50 transition-all group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                <div className="flex justify-between items-start mb-3 relative z-10">
+                  <skill.icon className="w-7 h-7 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+
+                <div className="font-mono text-base text-foreground mb-1 relative z-10 font-bold">{skill.label}</div>
+                <div className="text-xs text-muted-foreground mb-3 relative z-10">{skill.category}</div>
+
+                <div className="h-1 w-full bg-secondary/30 rounded-full overflow-hidden relative z-10">
+                  <motion.div
+                    className="h-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]"
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${skill.level}%` } : {}}
+                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
