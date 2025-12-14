@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Card, CardContent } from '@/components/ui/card'
+
 import {
   Cloud,
   Code,
@@ -14,7 +14,6 @@ import {
   Target,
   Users,
   TrendingUp,
-  Terminal,
   Cpu,
   Layers
 } from 'lucide-react'
@@ -65,7 +64,7 @@ export default function About() {
           <div className="h-px bg-primary/50 w-12" />
           <h2 className="text-2xl font-mono text-primary tracking-wider font-bold flex items-center gap-2">
             <Layers className="w-5 h-5" />
-            // SYSTEM_ARCHITECTURE
+            {'// SYSTEM_ARCHITECTURE'}
           </h2>
           <div className="h-px bg-primary/50 w-12" />
         </motion.div>
@@ -117,7 +116,7 @@ export default function About() {
                   <span className="text-green-500">➜</span> <span className="text-blue-400">whoami</span>
                 </p>
                 <p className="mb-6 pl-4 border-l-2 border-primary/20">
-                  I'm <span className="text-foreground font-bold">Prabhat</span> — a Senior Software Engineer with over 8 years of experience building cloud-native, data-driven, and AI-enhanced systems.
+                  I&apos;m <span className="text-foreground font-bold">Prabhat</span> — a Senior Software Engineer with over 8 years of experience building cloud-native, data-driven, and AI-enhanced systems.
                 </p>
 
                 <p className="mb-4">
@@ -128,7 +127,7 @@ export default function About() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-8">
-                  {['Cloud-Native', 'AI/ML', 'Serverless', 'Leadership'].map((tag, i) => (
+                  {['Cloud-Native', 'AI/ML', 'Serverless', 'Leadership'].map((tag) => (
                     <span key={tag} className="px-3 py-1.5 bg-primary/10 text-primary text-sm border border-primary/20 rounded hover:bg-primary/20 transition-colors cursor-default">
                       #{tag}
                     </span>

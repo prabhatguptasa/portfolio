@@ -1,15 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense, lazy } from 'react'
 import HeroNeural from './components/HeroNeural'
-import About from './components/About'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
 import Navigation from './components/Navigation'
-// Dynamic Weather Effect
 import WeatherEffect from './components/WeatherEffect'
+import { WeatherProvider, useWeather } from '@/context/WeatherContext'
 import { motion } from 'framer-motion'
 
-function App() {
+// Lazy load components that are not immediately visible
+const About = lazy(() => import('./components/About'))
+const Experience = lazy(() => import('./components/Experience'))
+const Contact = lazy(() => import('./components/Contact'))
+
+// Loading fallback
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-20">
+    <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+)
+
+// Inner app component that uses weather context
+function AppContent() {
   const [activeSection, setActiveSection] = useState('home')
+  const { weatherCondition, loading } = useWeather()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,12 +49,16 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Dynamic weather class
+  const weatherClass = loading ? '' : `weather-${weatherCondition}`
+
   return (
-    <main className="min-h-screen transition-colors">
+    <main className={`min-h-screen transition-colors weather-transition ${weatherClass}`}>
+      {/* Weather background overlay */}
+      <div className="weather-bg-overlay" aria-hidden="true" />
+
       <WeatherEffect />
-      <Navigation
-        activeSection={activeSection}
-      />
+      <Navigation activeSection={activeSection} />
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -55,20 +70,33 @@ function App() {
         </section>
 
         <section id="about">
-          <About />
+          <Suspense fallback={<SectionLoader />}>
+            <About />
+          </Suspense>
         </section>
 
         <section id="experience">
-          <Experience />
+          <Suspense fallback={<SectionLoader />}>
+            <Experience />
+          </Suspense>
         </section>
 
         <section id="contact">
-          <Contact />
+          <Suspense fallback={<SectionLoader />}>
+            <Contact />
+          </Suspense>
         </section>
       </motion.div>
     </main>
   )
 }
 
-export default App
+function App() {
+  return (
+    <WeatherProvider>
+      <AppContent />
+    </WeatherProvider>
+  )
+}
 
+export default App

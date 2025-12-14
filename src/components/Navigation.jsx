@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Home, User, Briefcase, Mail, Activity, Terminal } from 'lucide-react'
 
 const navItems = [
@@ -76,6 +76,7 @@ export default function Navigation({ activeSection }) {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className="relative group"
+                aria-label={`Navigate to ${item.label} section`}
               >
                 <div className={`
                   relative px-4 py-3 rounded-xl flex items-center gap-2 transition-all duration-300
