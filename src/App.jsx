@@ -2,6 +2,7 @@ import { useState, useEffect, Suspense, lazy } from 'react'
 import HeroNeural from './components/HeroNeural'
 import Navigation from './components/Navigation'
 import WeatherEffect from './components/WeatherEffect'
+import Footer from './components/Footer'
 import { WeatherProvider, useWeather } from '@/context/WeatherContext'
 import { motion } from 'framer-motion'
 
@@ -13,7 +14,7 @@ const Contact = lazy(() => import('./components/Contact'))
 // Loading fallback
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-20">
-    <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+    <span className="loading loading-infinity loading-lg text-primary"></span>
   </div>
 )
 
@@ -86,6 +87,8 @@ function AppContent() {
             <Contact />
           </Suspense>
         </section>
+
+        <Footer />
       </motion.div>
     </main>
   )

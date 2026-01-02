@@ -62,7 +62,7 @@ export default function Contact() {
             <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/10 rounded-tr-3xl" />
             <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/10 rounded-bl-3xl" />
 
-            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono text-sm mb-8 font-bold tracking-wider">
+            <div className="badge badge-lg badge-primary badge-outline gap-3 p-4 mb-8 font-mono font-bold tracking-wider rounded-full">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -88,7 +88,7 @@ export default function Contact() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <Button size="lg" className="w-full h-16 px-8 text-lg rounded-xl bg-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_40px_rgba(var(--primary),0.5)] transition-all duration-300 group">
+                <Button size="lg" className="btn-primary w-full h-16 px-8 text-lg rounded-xl shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_40px_rgba(var(--primary),0.5)] transition-all duration-300 group">
                   <Linkedin className="mr-3 w-6 h-6" />
                   <span className="font-mono tracking-wide">CONNECT_LINKEDIN</span>
                   <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
