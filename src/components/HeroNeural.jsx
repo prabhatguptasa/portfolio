@@ -87,7 +87,7 @@ export default function HeroNeural() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-primary/5 border border-primary/20 backdrop-blur-md"
+                    className="badge badge-lg badge-primary badge-outline gap-2 mb-8 p-4 backdrop-blur-md"
                 >
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -117,7 +117,7 @@ export default function HeroNeural() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute -top-16 -translate-y-full left-1/2 -translate-x-1/2 bg-background/80 backdrop-blur border border-primary/30 text-primary px-6 py-3 rounded-lg flex items-center gap-3 shadow-[0_0_20px_rgba(var(--primary),0.2)] z-50 max-w-md w-full mx-4"
+                            className="absolute -top-16 -translate-y-full left-1/2 -translate-x-1/2 alert alert-info bg-background/80 backdrop-blur border-primary/30 text-primary shadow-lg z-50 max-w-md w-full mx-4"
                         >
                             <Locate className="w-5 h-5 animate-pulse" />
                             <div className="text-left">
@@ -176,7 +176,7 @@ export default function HeroNeural() {
                 >
                     <Button
                         size="lg"
-                        className="group relative h-14 px-8 text-lg rounded-none border border-primary bg-primary/10 hover:bg-primary/20 text-primary overflow-hidden"
+                        className="btn-primary btn-outline group relative h-14 px-8 text-lg rounded-none overflow-hidden"
                         onClick={() => scrollToSection('contact')}
                     >
                         <div className="absolute inset-0 w-1 bg-primary transition-all duration-300 group-hover:w-full opacity-10" />

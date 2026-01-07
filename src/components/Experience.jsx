@@ -171,9 +171,9 @@ export default function Experience() {
                           <h3 className="text-3xl md:text-4xl font-bold text-foreground font-display">
                             {experiences[expandedIndex].title}
                           </h3>
-                          <Badge variant="outline" className="font-mono text-primary border-primary/30 bg-primary/5 px-3 py-1 text-sm">
+                          <div className="badge badge-primary badge-outline font-mono gap-2 p-3">
                             {experiences[expandedIndex].role}
-                          </Badge>
+                          </div>
                         </div>
 
                         <div className="flex items-center gap-6 text-base text-muted-foreground font-mono">
@@ -233,10 +233,10 @@ export default function Experience() {
                               onMouseLeave={() => setHoveredTech(null)}
                               whileHover={{ scale: 1.05 }}
                               className={`
-                                px-3 py-1.5 text-sm font-mono rounded-md border transition-all cursor-crosshair
+                                badge badge-lg rounded-md font-mono transition-all cursor-crosshair
                                 ${hoveredTech === tech
-                                  ? 'bg-accent text-accent-foreground border-accent shadow-[0_0_10px_rgba(var(--accent),0.3)]'
-                                  : 'bg-secondary/20 text-secondary-foreground border-secondary/30 hover:border-primary/50'}
+                                  ? 'badge-accent'
+                                  : 'badge-ghost border-primary/30'}
                               `}
                             >
                               {tech}

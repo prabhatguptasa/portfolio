@@ -75,7 +75,8 @@ export default function Navigation({ activeSection }) {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative group"
+                className="relative group tooltip tooltip-top"
+                data-tip={item.label}
                 aria-label={`Navigate to ${item.label} section`}
               >
                 <div className={`
@@ -95,11 +96,6 @@ export default function Navigation({ activeSection }) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                </div>
-
-                {/* Hover Tooltip for Mobile (Icon only view) */}
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-background border border-border rounded text-[10px] font-mono opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none sm:hidden whitespace-nowrap">
-                  {item.label}
                 </div>
               </button>
             )

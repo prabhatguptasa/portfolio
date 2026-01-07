@@ -191,13 +191,8 @@ export default function About() {
                 <div className="font-mono text-base text-foreground mb-1 relative z-10 font-bold">{skill.label}</div>
                 <div className="text-xs text-muted-foreground mb-3 relative z-10">{skill.category}</div>
 
-                <div className="h-1 w-full bg-secondary/30 rounded-full overflow-hidden relative z-10">
-                  <motion.div
-                    className="h-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]"
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : {}}
-                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                  />
+                <div className="w-full relative z-10">
+                  <progress className="progress progress-primary w-full h-2" value={skill.level} max="100"></progress>
                 </div>
               </motion.div>
             ))}
