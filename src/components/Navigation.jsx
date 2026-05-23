@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Home, User, Briefcase, Mail, Activity, Terminal } from 'lucide-react'
+import { Home, User, Briefcase, Mail, Activity } from 'lucide-react'
 
 const navItems = [
   { id: 'home', label: 'HOME', icon: Home },

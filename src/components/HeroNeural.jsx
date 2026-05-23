@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Linkedin, Terminal, Cpu, Cloud, Sun, CloudRain, Snowflake, CloudLightning, Moon, CloudMoon, Locate } from 'lucide-react'
+import { ArrowRight, Link, Terminal, Cpu, Cloud, Sun, CloudRain, Snowflake, CloudLightning, Moon, CloudMoon, Locate } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useWeather } from '@/context/WeatherContext'
 
@@ -194,7 +194,7 @@ export default function HeroNeural() {
                             rel="noopener noreferrer"
                             className="p-4 rounded-full border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
                         >
-                            <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                            <Link className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                         </a>
                     </div>
                 </motion.div>

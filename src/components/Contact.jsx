@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Linkedin, Terminal, Wifi, Globe } from 'lucide-react'
+import { ArrowRight, Link, Terminal, Wifi, Globe } from 'lucide-react'
 
 export default function Contact() {
   const ref = useRef(null)
@@ -89,7 +89,7 @@ export default function Contact() {
                 className="w-full sm:w-auto"
               >
                 <Button size="lg" className="btn-primary w-full h-16 px-8 text-lg rounded-xl shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_40px_rgba(var(--primary),0.5)] transition-all duration-300 group">
-                  <Linkedin className="mr-3 w-6 h-6" />
+                  <Link className="mr-3 w-6 h-6" />
                   <span className="font-mono tracking-wide">CONNECT_LINKEDIN</span>
                   <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
