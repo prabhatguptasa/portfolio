@@ -1,4 +1,4 @@
-import { Linkedin, Globe } from 'lucide-react'
+import { Link, Globe } from 'lucide-react'
 
 export default function Footer() {
     return (
@@ -29,7 +29,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
                     >
-                        <Linkedin className="w-6 h-6" />
+                        <Link className="w-6 h-6" />
                     </a>
                     <a
                         href="https://prabhatgupta.in"

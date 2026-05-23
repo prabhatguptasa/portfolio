@@ -86,7 +86,7 @@ export default function Hero() {
         className="hidden lg:flex fixed left-8 top-1/2 -translate-y-1/2 z-20 flex-col gap-6"
       >
         {sections.map((section, index) => {
-          const Icon = section.icon
+          // const SectionIcon = section.icon
           const isHovered = hoveredSection === section.id
           return (
             <motion.div
@@ -186,7 +186,7 @@ export default function Hero() {
             className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto"
           >
             {sections.map((section, index) => {
-              const Icon = section.icon
+              // const SectionIcon = section.icon
               return (
                 <motion.div
                   key={section.id}
@@ -231,7 +231,7 @@ export default function Hero() {
                           : 'bg-secondary/20 text-secondary'
                       }`}
                     >
-                      <Icon className="w-6 h-6" />
+                      <section.icon className="w-6 h-6" />
                     </motion.div>
                     <h3 className="text-subtitle font-heading mb-2 text-foreground group-hover:text-primary transition-colors">
                       {section.title}

@@ -167,7 +167,7 @@ export default function WeatherEffect() {
                 this.depth = Math.random() // For parallax effect
             }
 
-            update(time) {
+            update() {
                 this.y += this.speed * (0.5 + this.depth * 0.5)
                 this.x += this.drift
 
@@ -341,7 +341,7 @@ export default function WeatherEffect() {
             }
         }
 
-        let time = 0
+        // let time = 0
         const animate = () => {
             if (isVisible) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -360,9 +360,9 @@ export default function WeatherEffect() {
                 }
 
                 // Update and draw particles
-                time += 0.01
+                // time += 0.01
                 particles.forEach(particle => {
-                    particle.update(time)
+                    particle.update()
                     particle.draw()
                 })
 
