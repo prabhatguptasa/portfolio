@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Briefcase, Calendar, MapPin, ChevronRight, Terminal, Cpu, Network } from 'lucide-react'
+import { Briefcase, MapPin, ChevronRight, Terminal, Cpu, Network } from 'lucide-react'
 
 const experiences = [
   {
@@ -12,12 +11,15 @@ const experiences = [
     location: 'Hyderabad, India',
     role: 'Tech Lead',
     highlights: [
-      'Led cross-functional team of five (2 QA, 2 Data Scientists, 1 Backend Engineer)',
-      'Architected ETL pipelines and integrated LLM-based chat systems',
-      'Drove infrastructure evolution using AWS CDK for robust, automated deployment',
-      'Mentored cross-functional team members in software design and deployment',
+      'Lead architecture and engineering execution for Lumos, an AI-powered game analytics platform for product, market, and feature intelligence use cases.',
+      'Re-architected Lumos backend and CDN-backed data delivery using Python, FastAPI, AWS CDK, S3, CloudFront, Lambda/Fargate, and Boto3.',
+      'Built Steam analytics ETL pipelines for DAU/MAU, wishlist trends, feature metrics, personas, temporal backfills, tag taxonomy mapping, and copies-sold/revenue prediction.',
+      'Integrated LLM-based search/chat with Azure API support, enabling natural-language querying of game intelligence and analytics.',
+      'Hardened subscription, payments, authentication, and access-control workflows across Stripe, Cognito, Mixpanel, usage limits, feature overrides, team invites, and DB-backed subscription lifecycle.',
+      'Modernized AWS infrastructure and release operations using serverless architecture, deployment validation, global latency optimization, CloudFront CDN patterns, and production runbooks.',
+      'Mentored engineers and led cross-functional delivery across architecture, API documentation, release notes, user guides, AWS inventories, Confluence documentation, and roadmaps.'
     ],
-    tech: ['AWS CDK', 'Lambda', 'Fargate', 'Python', 'Docker', 'GraphQL', 'ETL', 'LLM APIs'],
+    tech: ['Python', 'FastAPI', 'AWS CDK', 'Lambda', 'Fargate', 'S3', 'CloudFront', 'LLM', 'Stripe'],
   },
   {
     title: 'Software Engineer',
@@ -26,11 +28,12 @@ const experiences = [
     location: 'Hyderabad, India',
     role: 'Developer',
     highlights: [
-      'Designed and launched Gameopedia\'s first serverless system on AWS Lambda and Fargate',
-      'Implemented Infrastructure as Code (IaC) to enhance deployment scalability',
-      'Led multiple efficiency initiatives, refactoring legacy codebases',
+      'Architected and launched the first serverless system using AWS Lambda and Fargate, reducing operational overhead and improving scalability.',
+      'Implemented Infrastructure as Code with AWS CDK to improve deployment reliability, repeatability, and automation across cloud environments.',
+      'Refactored legacy Python and FastAPI codebases to improve maintainability, system efficiency, delivery speed, and long-term platform reliability.',
+      'Integrated third-party services and complex authentication flows to expand platform capabilities and support production use cases.'
     ],
-    tech: ['AWS Lambda', 'Fargate', 'Python', 'IaC', 'Serverless'],
+    tech: ['AWS Lambda', 'Fargate', 'AWS CDK', 'Python', 'FastAPI', 'Serverless'],
   },
   {
     title: 'Quality Assurance Engineer',
@@ -39,24 +42,23 @@ const experiences = [
     location: 'Hyderabad, India',
     role: 'QA Automation',
     highlights: [
-      'Built automated testing frameworks in Python',
-      'Enhanced QA processes by integrating automation',
-      'Improved reporting efficiency',
+      'Engineered automated testing frameworks using Python and Selenium WebDriver API, reducing manual testing cycles and improving regression coverage.',
+      'Integrated QA automation into deployment pipelines and improved reporting workflows for faster defect detection and release validation.'
     ],
-    tech: ['Python', 'Automation', 'Testing'],
+    tech: ['Python', 'Selenium', 'WebDriver API', 'Automation', 'CI/CD'],
   },
   {
-    title: 'Jr. Quality Analyst',
+    title: 'Jr. Quality Analyst / Data Collection Specialist',
     company: 'Gameopedia',
-    period: 'Sep 2019 - Jan 2021',
+    period: 'Nov 2017 - Jan 2021',
     location: 'Hyderabad, India',
-    role: 'QA',
+    role: 'QA & Data',
     highlights: [
-      'Conducted comprehensive manual and automated testing using Python',
-      'Managed and maintained web scraping projects',
-      'Collaborated with cross-functional teams to identify and resolve defects',
+      'Managed and maintained Python-based web scraping projects, optimizing large-scale data extraction workflows for gaming content and analytics.',
+      'Conducted manual and automated testing, source-document evaluation, and data-quality reviews to improve accuracy and operational efficiency.',
+      'Collaborated with cross-functional teams to streamline data collection methods, improving efficiency by 20%; led a two-member pod to coordinate project delivery.'
     ],
-    tech: ['Python', 'Web Scraping', 'Testing'],
+    tech: ['Python', 'Web Scraping', 'Data Quality', 'Testing'],
   },
 ]
 
@@ -82,7 +84,7 @@ export default function Experience() {
           <div className="h-px bg-primary/50 w-12" />
           <h2 className="text-2xl font-mono text-primary tracking-wider font-bold flex items-center gap-2">
             <Network className="w-5 h-5" />
-            // RUNTIME_LOGS
+            {'// RUNTIME_LOGS'}
           </h2>
           <div className="h-px bg-primary/50 w-12" />
         </motion.div>

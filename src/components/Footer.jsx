@@ -1,4 +1,4 @@
-import { Linkedin, Github, Mail } from 'lucide-react'
+import { Linkedin, Globe } from 'lucide-react'
 
 export default function Footer() {
     return (
@@ -12,6 +12,14 @@ export default function Footer() {
                 >
                     LINKEDIN
                 </a>
+                <a
+                    href="https://prabhatgupta.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link link-hover hover:text-primary transition-colors font-mono opacity-70 hover:opacity-100"
+                >
+                    WEBSITE
+                </a>
             </nav>
             <nav>
                 <div className="grid grid-flow-col gap-6">
@@ -23,11 +31,19 @@ export default function Footer() {
                     >
                         <Linkedin className="w-6 h-6" />
                     </a>
+                    <a
+                        href="https://prabhatgupta.in"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                    >
+                        <Globe className="w-6 h-6" />
+                    </a>
                 </div>
             </nav>
             <aside>
                 <p className="font-mono text-xs opacity-50">
-          // Copyright © {new Date().getFullYear()} - System by Prabhat Gupta
+          {'// Copyright © '}{new Date().getFullYear()}{' - System by Prabhat Gupta'}
                 </p>
             </aside>
         </footer>
