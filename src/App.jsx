@@ -1,9 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
 import HeroNeural from './components/HeroNeural'
 import Navigation from './components/Navigation'
-import WeatherEffect from './components/WeatherEffect'
 import Footer from './components/Footer'
-import { WeatherProvider, useWeather } from '@/context/WeatherContext'
 import { motion } from 'framer-motion'
 
 // Lazy load components that are not immediately visible
@@ -21,8 +19,6 @@ const SectionLoader = () => (
 // Inner app component that uses weather context
 function AppContent() {
   const [activeSection, setActiveSection] = useState('home')
-  const { weatherCondition, loading } = useWeather()
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'contact']
@@ -50,15 +46,14 @@ function AppContent() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Dynamic weather class
-  const weatherClass = loading ? '' : `weather-${weatherCondition}`
+  // Static weather class
+  const weatherClass = 'weather-clear-night'
 
   return (
     <main className={`min-h-screen transition-colors weather-transition ${weatherClass}`}>
       {/* Weather background overlay */}
       <div className="weather-bg-overlay" aria-hidden="true" />
 
-      <WeatherEffect />
       <Navigation activeSection={activeSection} />
 
       <motion.div
@@ -96,9 +91,7 @@ function AppContent() {
 
 function App() {
   return (
-    <WeatherProvider>
-      <AppContent />
-    </WeatherProvider>
+    <AppContent />
   )
 }
 
