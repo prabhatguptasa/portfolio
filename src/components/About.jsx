@@ -7,7 +7,6 @@ import {
   Database,
   Brain,
   Server,
-  GitBranch,
   Zap,
   Shield,
   Rocket,
@@ -19,14 +18,14 @@ import {
 } from 'lucide-react'
 
 const skills = [
-  { icon: Cloud, label: 'AWS Cloud', level: 95, category: 'Infrastructure' },
-  { icon: Code, label: 'Python', level: 90, category: 'Language' },
-  { icon: Database, label: 'Data Pipelines', level: 88, category: 'Data' },
-  { icon: Brain, label: 'AI/LLM Integration', level: 85, category: 'AI' },
-  { icon: Server, label: 'Serverless', level: 90, category: 'Infrastructure' },
-  { icon: GitBranch, label: 'GraphQL', level: 85, category: 'API' },
-  { icon: Zap, label: 'AWS CDK', level: 92, category: 'Infrastructure' },
-  { icon: Shield, label: 'IaC', level: 88, category: 'DevOps' },
+  { icon: Code, label: 'Python & FastAPI', level: 95, category: 'Language' },
+  { icon: Cloud, label: 'AWS Serverless', level: 92, category: 'Infrastructure' },
+  { icon: Database, label: 'ETL & Data', level: 88, category: 'Data' },
+  { icon: Brain, label: 'LLM & AI', level: 85, category: 'AI' },
+  { icon: Zap, label: 'AWS CDK', level: 90, category: 'Infrastructure' },
+  { icon: Server, label: 'System Design', level: 88, category: 'Architecture' },
+  { icon: Shield, label: 'IaC & Deploy', level: 85, category: 'DevOps' },
+  { icon: Users, label: 'Leadership', level: 90, category: 'Product' },
 ]
 
 const focusAreas = [
@@ -116,14 +115,35 @@ export default function About() {
                   <span className="text-green-500">➜</span> <span className="text-blue-400">whoami</span>
                 </p>
                 <p className="mb-6 pl-4 border-l-2 border-primary/20">
-                  I&apos;m <span className="text-foreground font-bold">Prabhat</span> — a Senior Software Engineer with over 8 years of experience building cloud-native, data-driven, and AI-enhanced systems.
+                  I&apos;m <span className="text-foreground font-bold">Prabhat</span> — a Senior Software Engineer and Product Technical Lead with 8+ years building cloud-native, AI-driven, and data-intensive systems for game analytics.
                 </p>
 
                 <p className="mb-4">
                   <span className="text-green-500">➜</span> <span className="text-blue-400">cat current_role.txt</span>
                 </p>
                 <p className="mb-6 pl-4 border-l-2 border-primary/20">
-                  Currently leading as <span className="text-foreground font-bold">Tech Lead for Lumos</span>, a next-generation game analytics platform. I specialize in architecting ETL pipelines, integrating LLM-based chat systems, and driving infrastructure evolution using AWS CDK.
+                  Currently leading engineering for Lumos, delivering Python/FastAPI services, AWS serverless architecture, ETL pipelines, LLM search/chat, subscription infrastructure, and production hardening. Re-architected backend and data delivery systems to reduce API latency from 10s to 100ms and lower AWS costs by 95%+.
+                </p>
+
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">cat education.txt</span>
+                </p>
+                <p className="mb-6 pl-4 border-l-2 border-primary/20">
+                  Birla Institute of Applied Sciences | B.Tech, Electronics and Communication Engineering | 2012 - 2016
+                </p>
+
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">cat certifications.txt</span>
+                </p>
+                <p className="mb-6 pl-4 border-l-2 border-primary/20">
+                  Graph Developer - Associate | How to Automate Web App Testing using Selenium WebDriver API
+                </p>
+
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">cat languages.txt</span>
+                </p>
+                <p className="mb-6 pl-4 border-l-2 border-primary/20">
+                  Hindi - Native or Bilingual | English - Professional Working
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-8">

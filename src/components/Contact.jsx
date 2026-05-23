@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Mail, Linkedin, Terminal, Send, Wifi } from 'lucide-react'
+import { ArrowRight, Linkedin, Terminal, Wifi, Globe } from 'lucide-react'
 
 export default function Contact() {
   const ref = useRef(null)
@@ -68,7 +68,7 @@ export default function Contact() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               <Wifi className="w-4 h-4" />
-              // ESTABLISH_UPLINK
+              {'// ESTABLISH_UPLINK'}
             </div>
 
             <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight font-display">
@@ -91,6 +91,20 @@ export default function Contact() {
                 <Button size="lg" className="btn-primary w-full h-16 px-8 text-lg rounded-xl shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_40px_rgba(var(--primary),0.5)] transition-all duration-300 group">
                   <Linkedin className="mr-3 w-6 h-6" />
                   <span className="font-mono tracking-wide">CONNECT_LINKEDIN</span>
+                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </motion.a>
+              <motion.a
+                href="https://prabhatgupta.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
+                <Button size="lg" className="btn-secondary w-full h-16 px-8 text-lg rounded-xl shadow-[0_0_20px_rgba(var(--secondary),0.3)] hover:shadow-[0_0_40px_rgba(var(--secondary),0.5)] transition-all duration-300 group">
+                  <Globe className="mr-3 w-6 h-6" />
+                  <span className="font-mono tracking-wide">VISIT_WEBSITE</span>
                   <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.a>
