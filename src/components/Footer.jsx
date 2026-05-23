@@ -8,7 +8,7 @@ export default function Footer() {
                     href="https://in.linkedin.com/in/prabhat--gupta"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link link-hover hover:text-primary transition-colors font-mono opacity-70 hover:opacity-100"
+                    className="link link-hover hover:text-primary transition-colors font-mono opacity-70 hover:opacity-100 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
                 >
                     LINKEDIN
                 </a>
@@ -16,7 +16,7 @@ export default function Footer() {
                     href="https://prabhatgupta.in"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link link-hover hover:text-primary transition-colors font-mono opacity-70 hover:opacity-100"
+                    className="link link-hover hover:text-primary transition-colors font-mono opacity-70 hover:opacity-100 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
                 >
                     WEBSITE
                 </a>
@@ -27,7 +27,8 @@ export default function Footer() {
                         href="https://in.linkedin.com/in/prabhat--gupta"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                        className="hover:text-primary transition-colors hover:scale-110 transform duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
+                        aria-label="LinkedIn Profile"
                     >
                         <Link className="w-6 h-6" />
                     </a>
@@ -35,7 +36,8 @@ export default function Footer() {
                         href="https://prabhatgupta.in"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                        className="hover:text-primary transition-colors hover:scale-110 transform duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
+                        aria-label="Personal Website"
                     >
                         <Globe className="w-6 h-6" />
                     </a>

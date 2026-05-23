@@ -130,7 +130,8 @@ export default function HeroNeural() {
                             href="https://in.linkedin.com/in/prabhat--gupta"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-4 rounded-full border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+                            className="p-4 rounded-full border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                            aria-label="LinkedIn Profile"
                         >
                             <Link className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                         </a>
