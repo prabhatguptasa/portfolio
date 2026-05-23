@@ -7,7 +7,6 @@ import { motion } from 'framer-motion'
 // Lazy load components that are not immediately visible
 const About = lazy(() => import('./components/About'))
 const Experience = lazy(() => import('./components/Experience'))
-const Contact = lazy(() => import('./components/Contact'))
 
 // Loading fallback
 const SectionLoader = () => (
@@ -21,12 +20,12 @@ function AppContent() {
   const [activeSection, setActiveSection] = useState('home')
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'contact']
+      const sections = ['home', 'about', 'experience']
       const scrollPosition = window.scrollY + 200
 
       // Check if we're at the bottom of the page
       if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
-        setActiveSection('contact')
+        setActiveSection('experience')
         return
       }
 
@@ -74,12 +73,6 @@ function AppContent() {
         <section id="experience">
           <Suspense fallback={<SectionLoader />}>
             <Experience />
-          </Suspense>
-        </section>
-
-        <section id="contact">
-          <Suspense fallback={<SectionLoader />}>
-            <Contact />
           </Suspense>
         </section>
 
