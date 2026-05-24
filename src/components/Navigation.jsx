@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Home, User, Briefcase, Mail, Activity } from 'lucide-react'
+import { Home, User, Briefcase, Activity } from 'lucide-react'
 
 const navItems = [
   { id: 'home', label: 'HOME', icon: Home },
   { id: 'about', label: 'SYSTEM', icon: User },
   { id: 'experience', label: 'LOGS', icon: Briefcase },
-  { id: 'contact', label: 'UPLINK', icon: Mail },
 ]
 
 export default function Navigation({ activeSection }) {

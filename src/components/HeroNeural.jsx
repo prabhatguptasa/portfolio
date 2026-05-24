@@ -115,12 +115,12 @@ export default function HeroNeural() {
                     <Button
                         size="lg"
                         className="btn-primary btn-outline group relative h-14 px-8 text-lg rounded-none overflow-hidden"
-                        onClick={() => scrollToSection('contact')}
+                        onClick={() => scrollToSection('experience')}
                     >
                         <div className="absolute inset-0 w-1 bg-primary transition-all duration-300 group-hover:w-full opacity-10" />
                         <span className="relative flex items-center gap-2 font-mono tracking-wider">
                             <Terminal className="w-5 h-5" />
-                            INITIALIZE_UPLINK
+                            VIEW_LOGS
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </span>
                     </Button>
