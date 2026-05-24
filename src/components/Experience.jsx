@@ -238,7 +238,7 @@ export default function Experience() {
                                 badge badge-lg rounded-md font-mono transition-all cursor-crosshair
                                 ${hoveredTech === tech
                                   ? 'badge-accent'
-                                  : 'badge-ghost border-primary/30'}
+                                  : 'bg-primary/10 text-primary border-primary/30'}
                               `}
                             >
                               {tech}

@@ -1,7 +1,6 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
 import HeroNeural from './components/HeroNeural'
 import Navigation from './components/Navigation'
-import Footer from './components/Footer'
 import { motion } from 'framer-motion'
 
 // Lazy load components that are not immediately visible
@@ -76,7 +75,6 @@ function AppContent() {
           </Suspense>
         </section>
 
-        <Footer />
       </motion.div>
     </main>
   )
