@@ -3,6 +3,8 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
 import { Briefcase, MapPin, ChevronRight, Terminal, Cpu, Network } from 'lucide-react'
 
+const KEY_VERBS = new Set(['Led', 'Architected', 'Designed', 'Built', 'Managed']);
+
 const experiences = [
   {
     title: 'Senior Software Engineer',
@@ -209,7 +211,7 @@ export default function Experience() {
                               <span className="leading-relaxed">
                                 {item.split(' ').map((word, wIndex) => {
                                   // Highlight key verbs
-                                  const isKey = ['Led', 'Architected', 'Designed', 'Built', 'Managed'].includes(word);
+                                  const isKey = KEY_VERBS.has(word);
                                   return isKey ? (
                                     <span key={wIndex} className="text-foreground font-medium">{word} </span>
                                   ) : (
