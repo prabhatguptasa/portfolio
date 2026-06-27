@@ -107,7 +107,7 @@ export default function About() {
                 <div className="w-3 h-3 rounded-full bg-red-500/50" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
                 <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                <div className="ml-2 text-xs font-mono text-primary/70">user@portfolio:~/bio</div>
+                <div className="ml-2 text-xs font-mono text-primary/70">user@portfolio:~/senior_engineer_profile</div>
               </div>
 
               <div className="p-6 font-mono text-base md:text-lg leading-relaxed text-muted-foreground flex-1">
@@ -144,6 +144,13 @@ export default function About() {
                 </p>
                 <p className="mb-6 pl-4 border-l-2 border-primary/20">
                   Hindi - Native or Bilingual | English - Professional Working
+                </p>
+
+                <p className="mb-4">
+                  <span className="text-green-500">➜</span> <span className="text-blue-400">cat contact.txt</span>
+                </p>
+                <p className="mb-6 pl-4 border-l-2 border-primary/20 text-red-400/80">
+                  [ERR: PII_REDACTED. USE SECURE LINKEDIN CHANNEL.]
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-8">
