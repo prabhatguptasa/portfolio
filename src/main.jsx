@@ -9,7 +9,7 @@ if ('serviceWorker' in navigator) {
       for (let registration of registrations) {
         registration.unregister().then(success => {
           if (success) {
-            console.log('SW unregistered successfully');
+            // SW unregistered successfully
           }
         });
       }
