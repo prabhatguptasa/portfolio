@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Home, User, Briefcase, Activity } from 'lucide-react'
 
 const navItems = [
@@ -9,22 +9,16 @@ const navItems = [
 ]
 
 export default function Navigation({ activeSection }) {
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const { scrollYProgress } = useScroll()
+  const scrollPercentage = useTransform(scrollYProgress, v => `${v * 100}%`)
+  const scrollValue = useTransform(scrollYProgress, v => Math.round(v * 100))
+
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const scroll = `${totalScroll / windowHeight}`
-      setScrollProgress(Number(scroll))
-    }
-
     const timer = setInterval(() => setTime(new Date()), 1000)
 
-    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
       clearInterval(timer)
     }
   }, [])
@@ -115,11 +109,11 @@ export default function Navigation({ activeSection }) {
         <div className="w-1 h-32 bg-secondary/30 rounded-full overflow-hidden relative">
           <motion.div
             className="absolute top-0 left-0 w-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]"
-            style={{ height: `${scrollProgress * 100}%` }}
+            style={{ height: scrollPercentage }}
           />
         </div>
         <div className="text-[10px] font-mono text-primary">
-          {Math.round(scrollProgress * 100)}%
+          <motion.span>{scrollValue}</motion.span>%
         </div>
       </motion.div>
 
