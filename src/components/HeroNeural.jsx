@@ -59,7 +59,7 @@ export default function HeroNeural() {
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                     </span>
                     <span className="text-primary text-xs font-mono font-bold tracking-widest">
-                        NEURAL_INTERFACE_ACTIVE
+                        ACCESS_LEVEL: SENIOR_SOFTWARE_ENGINEER
                     </span>
                 </motion.div>
 
@@ -101,6 +101,9 @@ export default function HeroNeural() {
                     <p className="text-xl md:text-2xl text-muted-foreground font-light">
                         Senior Software Engineer & Tech Lead
                     </p>
+                    <div className="mt-2 text-xs font-mono text-primary/70 tracking-widest">
+                        [SYSTEM_NOTE: PII_REDACTED // SECURE_COMMS_ONLY]
+                    </div>
                 </motion.div>
 
                 <motion.div
