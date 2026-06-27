@@ -44,13 +44,9 @@ function AppContent() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Static weather class
-  const weatherClass = 'weather-clear-night'
-
   return (
-    <main className={`min-h-screen transition-colors weather-transition ${weatherClass}`}>
-      {/* Weather background overlay */}
-      <div className="weather-bg-overlay" aria-hidden="true" />
+    <main className="min-h-screen transition-colors">
+      <div className="ambient-bg-overlay" aria-hidden="true" />
 
       <Navigation activeSection={activeSection} />
 
