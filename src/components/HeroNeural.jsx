@@ -16,14 +16,11 @@ export default function HeroNeural() {
         }
     }
 
-    // Static glow color based on clear-night
-    const currentGlow = 'from-indigo-500/15 via-purple-500/10'
+    const glowClass = 'from-indigo-500/15 via-purple-500/10'
 
-    // Static grid pattern opacity based on clear-night
-    const currentGridOpacity = '0.04'
+    const gridOpacity = '0.04'
 
-    // Static theme for clear-night
-    const theme = {
+    const ambientTheme = {
         glowColor: 'rgba(100, 120, 255, 0.15)'
     }
 
@@ -32,17 +29,17 @@ export default function HeroNeural() {
             ref={containerRef}
             className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
         >
-            {/* Dynamic grid pattern with weather-based opacity */}
+            {/* Dynamic grid pattern */}
             <div
                 className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] transition-opacity duration-1000"
-                style={{ opacity: currentGridOpacity }}
+                style={{ opacity: gridOpacity }}
             />
 
-            {/* Weather-responsive ambient glow */}
+            {/* Ambient glow */}
             <div
-                className={`absolute inset-0 bg-gradient-radial ${currentGlow} to-transparent opacity-60 transition-all duration-1000`}
+                className={`absolute inset-0 bg-gradient-radial ${glowClass} to-transparent opacity-60 transition-all duration-1000`}
                 style={{
-                    background: `radial-gradient(ellipse 80% 60% at 50% 30%, ${theme.glowColor}, transparent 70%)`
+                    background: `radial-gradient(ellipse 80% 60% at 50% 30%, ${ambientTheme.glowColor}, transparent 70%)`
                 }}
             />
 
@@ -75,7 +72,7 @@ export default function HeroNeural() {
                     <span className="relative inline-block">
                         <span
                             className="absolute -inset-1 blur-2xl opacity-50 animate-pulse transition-colors duration-1000"
-                            style={{ backgroundColor: theme.glowColor }}
+                            style={{ backgroundColor: ambientTheme.glowColor }}
                         ></span>
                         <span className="relative text-foreground">
                             PRABHAT
