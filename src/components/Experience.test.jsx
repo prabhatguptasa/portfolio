@@ -9,15 +9,15 @@ vi.mock('framer-motion', () => {
     motion: {
       div: ({ children, ...props }) => {
         // filter out framer-motion specific props to prevent DOM warnings
-        const { initial, animate, exit, transition, layoutId, whileHover, ...validProps } = props
+        const { initial, animate, exit, transition, layoutId, whileHover, ...validProps } = props; void initial; void animate; void exit; void transition; void layoutId; void whileHover;
         return React.createElement('div', validProps, children)
       },
       li: ({ children, ...props }) => {
-        const { initial, animate, transition, ...validProps } = props
+        const { initial, animate, transition, ...validProps } = props; void initial; void animate; void transition;
         return React.createElement('li', validProps, children)
       },
       span: ({ children, ...props }) => {
-        const { whileHover, ...validProps } = props
+        const { whileHover, ...validProps } = props; void whileHover;
         return React.createElement('span', validProps, children)
       }
     },
