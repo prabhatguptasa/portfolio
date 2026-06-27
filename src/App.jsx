@@ -18,30 +18,41 @@ const SectionLoader = () => (
 function AppContent() {
   const [activeSection, setActiveSection] = useState('home')
   useEffect(() => {
+    let timeoutId = null
+
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience']
-      const scrollPosition = window.scrollY + 200
+      if (timeoutId) return
 
-      // Check if we're at the bottom of the page
-      if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
-        setActiveSection('experience')
-        return
-      }
+      timeoutId = setTimeout(() => {
+        const sections = ['home', 'about', 'experience']
+        const scrollPosition = window.scrollY + 200
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+        // Check if we're at the bottom of the page
+        if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+          setActiveSection('experience')
+          timeoutId = null
+          return
+        }
+
+        for (const section of sections) {
+          const element = document.getElementById(section)
+          if (element) {
+            const { offsetTop, offsetHeight } = element
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(section)
+              break
+            }
           }
         }
-      }
+        timeoutId = null
+      }, 100)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (timeoutId) clearTimeout(timeoutId)
+    }
   }, [])
 
   return (
