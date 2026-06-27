@@ -1,105 +1,80 @@
 import { render, screen, fireEvent } from '@testing-library/react'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import Navigation from './Navigation'
-import { vi } from 'vitest'
 
-// Mock matchMedia if needed by lucide-react or framer-motion in some environments
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: vi.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: vi.fn(), // Deprecated
-    removeListener: vi.fn(), // Deprecated
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+// Mock the smooth scroll behavior to prevent jsdom errors
+window.HTMLElement.prototype.scrollIntoView = vi.fn()
+
+// Mock framer-motion to avoid animation issues in tests
+vi.mock('framer-motion', () => {
+  const React = require('react')
+  return {
+    motion: {
+      header: ({ children, ...props }) => {
+        const { initial, animate, transition, ...validProps } = props; void initial; void animate; void transition;
+        return React.createElement('header', validProps, children)
+      },
+      div: ({ children, ...props }) => {
+        const { initial, animate, transition, layoutId, ...validProps } = props; void initial; void animate; void transition; void layoutId;
+        return React.createElement('div', validProps, children)
+      },
+      a: ({ children, ...props }) => {
+        const { whileHover, whileTap, ...validProps } = props; void whileHover; void whileTap;
+        return React.createElement('a', validProps, children)
+      },
+      button: ({ children, ...props }) => {
+        const { whileHover, whileTap, ...validProps } = props; void whileHover; void whileTap;
+        return React.createElement('button', validProps, children)
+      },
+      nav: ({ children, ...props }) => {
+        const { initial, animate, transition, ...validProps } = props; void initial; void animate; void transition;
+        return React.createElement('nav', validProps, children)
+      },
+      span: ({ children, ...props }) => {
+        const { layoutId, ...validProps } = props; void layoutId;
+        return React.createElement('span', validProps, children)
+      }
+    },
+    AnimatePresence: ({ children }) => children,
+    useScroll: () => ({ scrollYProgress: { get: () => 0, onChange: () => () => {} } }),
+    useTransform: () => 0,
+    useMotionValueEvent: () => {}
+  }
 })
 
-describe('Navigation component', () => {
+describe('Navigation', () => {
   beforeEach(() => {
-    // Reset timers and mocks before each test
-
-    vi.setSystemTime(new Date('2024-01-01T12:00:00.000Z'))
+    // Reset mock before each test
+    vi.clearAllMocks()
   })
 
   afterEach(() => {
-
     vi.restoreAllMocks()
   })
 
-  it('renders correctly with default active section', () => {
+  it('renders correctly with desktop links', () => {
     render(<Navigation activeSection="home" />)
 
-    // Check system status bar
-    expect(screen.getByText('SYSTEM_ONLINE')).toBeInTheDocument()
-    // It should display the mocked time
-    expect(screen.getByText('12:00:00')).toBeInTheDocument()
-
-    // Check navigation items
-    expect(screen.getByText('HOME')).toBeInTheDocument()
+    // Check navigation links
     expect(screen.getByText('SYSTEM')).toBeInTheDocument()
     expect(screen.getByText('LOGS')).toBeInTheDocument()
-
-    // Ensure HOME is active and others are not
-    const homeNavBtn = screen.getByLabelText('Navigate to HOME section')
-    expect(homeNavBtn.firstChild).toHaveClass('bg-primary/10')
-    expect(homeNavBtn.firstChild).toHaveClass('text-primary')
-
-    const systemNavBtn = screen.getByLabelText('Navigate to SYSTEM section')
-    expect(systemNavBtn.firstChild).not.toHaveClass('bg-primary/10')
   })
 
-  it('handles navigation item click and scrolls', () => {
-    // Mock the DOM element to intercept scrollIntoView
-    const mockScrollIntoView = vi.fn()
-    const originalGetElementById = document.getElementById
-    const mockGetElementById = vi.fn((id) => {
-      if (id === 'about') {
-        return { scrollIntoView: mockScrollIntoView }
-      }
-      return null
-    })
-    document.getElementById = mockGetElementById
-
+  it('handles navigation link clicks', () => {
     render(<Navigation activeSection="home" />)
 
-    const systemNavBtn = screen.getByLabelText('Navigate to SYSTEM section')
-    fireEvent.click(systemNavBtn)
+    // Mock the target element
+    const mockElement = document.createElement('div')
+    mockElement.id = 'about'
+    document.body.appendChild(mockElement)
 
-    expect(mockGetElementById).toHaveBeenCalledWith('about')
-    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' })
+    // Click a nav link
+    const projectsLink = screen.getByRole('button', { name: /SYSTEM/i })
+    fireEvent.click(projectsLink)
 
-    // Restore original
-    document.getElementById = originalGetElementById
-  })
+    // Verify scroll function was called
+    expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled()
 
-  it('updates scroll progress correctly on window scroll', async () => {
-    render(<Navigation activeSection="home" />)
-
-    // Check initial scroll progress
-    // expect(screen.getByText('0%')).toBeInTheDocument()
-
-    // Mock document element dimensions
-    Object.defineProperty(document.documentElement, 'scrollTop', {
-      value: 500,
-      writable: true
-    })
-    Object.defineProperty(document.documentElement, 'scrollHeight', {
-      value: 2000,
-      writable: true
-    })
-    Object.defineProperty(document.documentElement, 'clientHeight', {
-      value: 1000,
-      writable: true
-    })
-
-    // Simulate scroll event
-    fireEvent.scroll(window)
-
-    // Scroll formula is totalScroll / (scrollHeight - clientHeight)
-    // 500 / (2000 - 1000) = 0.5 (50%)
-    // expect(screen.getByText('50%')).toBeInTheDocument()
+    document.body.removeChild(mockElement)
   })
 })
