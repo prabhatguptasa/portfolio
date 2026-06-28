@@ -163,10 +163,10 @@ This project is open source and available under the MIT License.
 
 ## Contact
 
-- **Email**: prabhug22@gmail.com
+- **Email**: [REDACTED]
 - **LinkedIn**: [linkedin.com/in/prabhat-gupta](https://www.linkedin.com/in/prabhat-gupta)
 - **Website**: prabhatgupta.in
-- **Phone**: +91 8989516041
+- **Phone**: [REDACTED]
 
 ---
 
