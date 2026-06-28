@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Home, User, Briefcase, Activity } from 'lucide-react'
+import Clock from './Clock'
 
 const navItems = [
   { id: 'home', label: 'HOME', icon: Home },
@@ -12,16 +12,6 @@ export default function Navigation({ activeSection }) {
   const { scrollYProgress } = useScroll()
   const scrollPercentage = useTransform(scrollYProgress, v => `${v * 100}%`)
   const scrollValue = useTransform(scrollYProgress, v => Math.round(v * 100))
-
-  const [time, setTime] = useState(new Date())
-
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -47,9 +37,7 @@ export default function Navigation({ activeSection }) {
           <span className="hidden sm:inline opacity-50">|</span>
           <span className="hidden sm:inline opacity-70">V.2.0.4</span>
         </div>
-        <div className="text-xs font-mono tracking-widest opacity-70">
-          {time.toLocaleTimeString([], { hour12: false })}
-        </div>
+        <Clock />
       </motion.div>
 
       {/* Bottom HUD Navigation */}
