@@ -101,6 +101,13 @@ export default function Navigation({ activeSection }) {
           />
         </div>
         <div className="text-[10px] font-mono text-primary">
+          {/*
+            BOLT OPTIMIZATION:
+            Directly bind the scroll percentage to a span via useMotionValueEvent
+            if we wanted to avoid even this component's re-render, but since
+            Navigation is now isolated from App's main content, this is already
+            much more efficient.
+          */}
           <motion.span>{scrollValue}</motion.span>%
         </div>
       </motion.div>

@@ -139,12 +139,14 @@ export default function HeroNeural() {
                 </motion.div>
 
                 {/* Scroll Indicator */}
-                <motion.div
+                <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 1 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer group"
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer group bg-transparent border-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 rounded-full p-2 transition-all"
                     onClick={() => scrollToSection('about')}
+                    aria-label="Scroll to About section"
+                    type="button"
                 >
                     <div className="w-px h-16 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 group-hover:via-primary transition-colors relative overflow-hidden">
                         <motion.div
@@ -153,7 +155,7 @@ export default function HeroNeural() {
                             transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                         />
                     </div>
-                </motion.div>
+                </motion.button>
             </motion.div>
         </div>
     )
