@@ -14,9 +14,13 @@ const SectionLoader = () => (
   </div>
 )
 
-// Inner app component that uses weather context
-function AppContent() {
+/**
+ * Optimized Navigation component that handles its own scroll state
+ * to prevent unnecessary re-renders of the entire App tree.
+ */
+function ScrollManagedNavigation() {
   const [activeSection, setActiveSection] = useState('home')
+
   useEffect(() => {
     let timeoutId = null
 
@@ -26,24 +30,29 @@ function AppContent() {
       timeoutId = setTimeout(() => {
         const sections = ['home', 'about', 'experience']
         const scrollPosition = window.scrollY + 200
+        let newSection = 'home'
 
         // Check if we're at the bottom of the page
         if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
-          setActiveSection('experience')
-          timeoutId = null
-          return
-        }
-
-        for (const section of sections) {
-          const element = document.getElementById(section)
-          if (element) {
-            const { offsetTop, offsetHeight } = element
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-              setActiveSection(section)
-              break
+          newSection = 'experience'
+        } else {
+          for (const section of sections) {
+            const element = document.getElementById(section)
+            if (element) {
+              const { offsetTop, offsetHeight } = element
+              if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                newSection = section
+                break
+              }
             }
           }
         }
+
+        setActiveSection(prev => {
+          if (prev !== newSection) return newSection
+          return prev
+        })
+
         timeoutId = null
       }, 100)
     }
@@ -55,6 +64,11 @@ function AppContent() {
     }
   }, [])
 
+  return <Navigation activeSection={activeSection} />
+}
+
+// Inner app component that uses weather context
+function AppContent() {
   return (
     <main className="min-h-screen transition-colors">
       <a
@@ -65,7 +79,7 @@ function AppContent() {
       </a>
       <div className="ambient-bg-overlay" aria-hidden="true" />
 
-      <Navigation activeSection={activeSection} />
+      <ScrollManagedNavigation />
 
       <motion.div
         initial={{ opacity: 0 }}
